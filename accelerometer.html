@@ -48,8 +48,8 @@
                   
     var current = $("#box").position();
     $("#box").css({
-      left: checkValue(current.left + acceleration.x, 0, 300) + "px",
-      top: checkValue(current.right + acceleration.y, 0, 300) + "px",
+      left: checkValue(current.left - acceleration.x, 0, 300) + "px",
+      top: checkValue(current.top + acceleration.y, 0, 300) + "px",
     });
   }
   
