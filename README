@@ -1,0 +1,14 @@
+Testing mobile web application for my Bachelor's thesis in Aalto University.
+
+Technologies used:
+
+- JQuery Mobile 1.0a4.1
+- PhoneGap
+
+Targeting test platforms:
+
+- Apple iOS
+- Android
+- Nokia Symbian^3
+- WebOs
+- Windows Phone 7
