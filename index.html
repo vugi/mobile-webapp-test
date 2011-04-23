@@ -1,21 +1,26 @@
 <!DOCTYPE html> 
 <html> 
 	<head> 
-	<title>Mobile webapp test</title> 
+	<title>Mobile webapp test</title>
+	<script type="text/javascript" charset="utf-8">
+	  var startTime = new Date();
+	</script>
 	<link rel="stylesheet" href="jquery.mobile-1.0a4.1/jquery.mobile-1.0a4.1.min.css" />
 	<script type="text/javascript" src="jquery.mobile-1.0a4.1/jquery-1.5.2.min.js"></script>
 	<script type="text/javascript" src="jquery.mobile-1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
+	<script src="js/main.js" type="text/javascript"></script>
 </head> 
 <body> 
 
-<div data-role="page">
+<div id="mainPage" data-role="page">
 
 	<div data-role="header">
 		<h1>Mobile webapp test</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">	
-		<p>Page content goes here.</p>		
+		<p>Page content goes here.</p>
+		<p id="timer">Loading...</p>
 	</div><!-- /content -->
 
 	<div data-role="footer">
