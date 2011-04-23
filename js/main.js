@@ -1,21 +1,17 @@
-$('div#mainPage').live('pagecreate',function(event){
-  log('Page was created in: '+ (new Date()-startTime) + 'ms');
-});
-
-$('div').live('pagebeforeshow',function(event, ui){
-  //log("pagebeforeshow");
-});
-
-$('div').live('pageshow',function(event, ui){
-  log('Page was shown in: '+ (new Date()-startTime) + 'ms');
+$(document).bind('deviceready',function(event, ui){
+  log('PhoneGap deviceready in: '+ stop() + 'ms');
 });
 
 $(document).ready(function() {
-  log('Document was ready in: '+ (new Date()-startTime) + 'ms');
-});
+  log('Document ready in: '+ stop() + 'ms');
+  
+  $('div').live('pagebeforeshow',function(event, ui){
+    start();
+  });
 
-$(document).bind('deviceready',function(event, ui){
-  log('Deviceready: '+ (new Date()-startTime) + 'ms');
+  $('div').live('pageshow',function(event, ui){
+    $("#timer").html(stop());
+  });
 });
 
 function start(){
@@ -23,6 +19,13 @@ function start(){
   startTime = new Date();
 }
 
+function stop(){
+  var diff = new Date()-startTime;
+  console.log("stop timer in " + diff);
+  return diff;
+}
+
 function log(message){
   $("#log").append("<p>"+message+"</p>");
+  console.log(message);
 }
