@@ -10,6 +10,13 @@
 	<script type="text/javascript" src="jquery.mobile-1.0a4.1/jquery-1.5.2.min.js"></script>
 	<script type="text/javascript" src="jquery.mobile-1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
 	<script src="js/main.js" type="text/javascript"></script>
+	
+	<!-- iOS settings -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=device-width, user-scalable=no" />
+	<link rel="apple-touch-icon" href="icon.png">
+	<!--<link rel="apple-touch-startup-image" href="assets/apple-touch-startup-image-320x460.png">-->
 </head> 
 <body> 
 
@@ -20,6 +27,11 @@
 	</div><!-- /header -->
 
 	<div data-role="content">	
+	  <ul data-role="listview" data-inset="true">
+      <li data-role="list-divider">PhoneGap or HTML5</li>
+      <li><a href="geolocation.html">Geolocation</a></li>
+    </ul>
+	  
 		<ul data-role="listview" data-inset="true">
       <li data-role="list-divider">JQuery Mobile elements</li>
       <li><a href="listview.html">List view</a></li>
