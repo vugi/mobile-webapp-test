@@ -8,61 +8,57 @@
 </head> 
 <body> 
 
-<div data-role="page" id="listview">
+<div data-role="page" id="geolocation">
 
 	<div data-role="header">
 		<h1>Geolocation</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">	
-    
     <p>Finding your location: <span id="status">checking...</span></p>
     <div id="mapcanvas" style="height:300px; width: 300px;"></div>
-    
-    <script type="text/javascript">
-    function geolocationSuccess(position) {
-      pos = position.coords;
-      $("#status").html(position.coords.latitude +", "+ position.coords.longitude);
-      $(document.body).append('<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&callback=drawMap" />');
-      $("#mapcanvas").html("Loading Google Maps API");
-    }
-    
-    function drawMap(){
-      var latlng = new google.maps.LatLng(pos.latitude, pos.longitude);
-      var myOptions = {
-        zoom: 15,
-        center: latlng,
-        mapTypeControl: false,
-        navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-      var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
-
-      var marker = new google.maps.Marker({
-          position: latlng, 
-          map: map, 
-          title:"You are here!"
-      });
-    }
-
-    function error(msg) {
-      var s = document.querySelector('#status');
-      s.innerHTML = typeof msg == 'string' ? msg : "failed";
-      s.className = 'fail';
-
-      // console.log(arguments);
-    }
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(geolocationSuccess, error);
-    } else {
-      error('not supported');
-    }
-
-    </script>
-
 	</div><!-- /content -->
+	
+	<!-- Page Scripts -->
+	
+	<script type="text/javascript">
+	
+	if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
+  } else {
+    geolocationError('Geolocation API not supported');
+  }
+	
+  function geolocationSuccess(position) {
+    pos = position.coords;
+    $("#status").html(position.coords.latitude +", "+ position.coords.longitude);
+    $(document.body).append('<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&callback=drawMap" />');
+    $("#mapcanvas").html("Loading Google Maps API");
+  }
 
+  function drawMap(){
+    var latlng = new google.maps.LatLng(pos.latitude, pos.longitude);
+    var myOptions = {
+      zoom: 15,
+      center: latlng,
+      mapTypeControl: false,
+      streetViewControl: false,
+      navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
+
+    var marker = new google.maps.Marker({
+        position: latlng, 
+        map: map, 
+        title:"You are here!"
+    });
+  }
+
+  function geolocationError(msg) {
+    $("#status").html(typeof msg == 'string' ? msg : "failed");
+  }
+  </script>
 </div><!-- /page -->
 
 </body>
