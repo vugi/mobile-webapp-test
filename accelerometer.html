@@ -17,7 +17,7 @@
 	<div data-role="content">	
     <p id="accelerometerStatus">checking...</p>
     
-    <div id="boxCanvas" style="position:relative; width: 300px; height: 300px; border: 1px solid grey;">
+    <div id="boxCanvas" style="position:relative; width: 290px; height: 300px; border: 1px solid grey;">
       <div id="box" style="position:absolute; width: 10px; height: 10px; left: 50%; top: 50%; background: blue;">
     </div>
 	</div><!-- /content -->
@@ -48,7 +48,7 @@
                   
     var current = $("#box").position();
     $("#box").css({
-      left: checkValue(current.left - acceleration.x, 0, 290) + "px",
+      left: checkValue(current.left - acceleration.x, 0, 280) + "px",
       top: checkValue(current.top + acceleration.y, 0, 290) + "px",
     });
   }
@@ -63,7 +63,7 @@
   }
   
   function accelerometerError(msg) {
-    $("#status").html(typeof msg == 'string' ? msg : "failed");
+    $("#accelerometerStatus").html(typeof msg == 'string' ? msg : "failed");
   }
   </script>
 
