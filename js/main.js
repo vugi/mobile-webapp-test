@@ -1,5 +1,5 @@
 $(document).bind('deviceready',function(event, ui){
-  log('PhoneGap deviceready in: '+ stop() + 'ms');
+  log('PhoneGap deviceready',stop());
 });
 
 $(document).ready(function() {
@@ -8,11 +8,9 @@ $(document).ready(function() {
   $('div').live('pagebeforeshow',function(event, ui){
     start();
   });
-
+  // Count time on pageshow
   $('div').live('pageshow',function(event, ui){
-    console.log();
     var page = $(".ui-page-active");
-    var type = page.hasClass("ui-dialog") ? "Dialog" : "Page";
     var time = stop();
     log(page.data("url"),time);
   });
@@ -46,6 +44,5 @@ function log(message,time){
   } else {
     console.log(message)
   }
-  $("#log").append("<li>"+message+"</li>");
-  
+  $("#log").append("<li>"+message+"</li>"); 
 }
