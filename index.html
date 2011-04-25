@@ -50,7 +50,11 @@
       <li><a href="emptypage.html" data-transition="flip">flip</a></li>
     </ul>
     
-    <a href="#logPage" data-role="button">Show Log</a>
+    <ul data-role="listview" data-inset="true">
+      <li><a href="#logPage">Show Log</a></li>
+    </ul>
+    
+    <!--<a href="#logPage" data-role="button">Show Log</a>-->
     
 	</div><!-- /content -->
 
@@ -65,6 +69,10 @@
   <div data-role="content">	
     <ul data-role="listview" id="log">
     </ul>
+    <ul data-role="listview" style="margin-top: 15px" data-theme="a">
+      <li>Average <span class='ui-li-count'><b id="average"></b> ms</span></li>
+    </ul>
+    
 	</div><!-- /content -->
 
 </div><!-- /page -->
