@@ -10,22 +10,28 @@ $(document).ready(function() {
   });
 
   $('div').live('pageshow',function(event, ui){
-    $("#timer").html(stop());
+    console.log();
+    var page = $(".ui-page-active");
+    var type = page.hasClass("ui-dialog") ? "Dialog" : "Page";
+    var time = stop();
+    log(type+" " + page.data("url") + " shown in " + time + "ms");
+  });
+  
+  $('#logPage').live('pageshow',function(event, ui){
+    $("#log").listview('refresh');
   });
 });
 
 function start(){
-  console.log("start timer");
   startTime = new Date();
 }
 
 function stop(){
   var diff = new Date()-startTime;
-  console.log("stop timer in " + diff);
   return diff;
 }
 
 function log(message){
-  $("#log").append("<p>"+message+"</p>");
+  $("#log").append("<li>"+message+"</li>");
   console.log(message);
 }

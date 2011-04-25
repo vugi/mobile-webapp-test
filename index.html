@@ -20,7 +20,7 @@
 </head> 
 <body> 
 
-<div id="mainPage" data-role="page">
+<div id="index" data-role="page">
 
 	<div data-role="header">
 		<h1>Mobile WebApp</h1>
@@ -31,7 +31,7 @@
       <li data-role="list-divider">PhoneGap or HTML5</li>
       <li><a href="geolocation.html">Geolocation</a></li>
       <li><a href="accelerometer.html">Accelerometer</a></li>
-      
+      <li><a href="canvas.html">Canvas</a></li>
     </ul>
 	  
 		<ul data-role="listview" data-inset="true">
@@ -50,7 +50,21 @@
       <li><a href="emptypage.html" data-transition="flip">flip</a></li>
     </ul>
     
-    <p id="log"></p>
+    <a href="#logPage" data-role="button">Show Log</a>
+    
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+<div id="logPage" data-role="page">
+
+	<div data-role="header">
+		<h1>Log</h1>
+	</div><!-- /header -->
+
+  <div data-role="content">	
+    <ul data-role="listview" id="log">
+    </ul>
 	</div><!-- /content -->
 
 </div><!-- /page -->

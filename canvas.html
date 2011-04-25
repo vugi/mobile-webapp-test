@@ -1,0 +1,102 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>Canvas</title> 
+	<link rel="stylesheet" href="jquery.mobile-1.0a4.1/jquery.mobile-1.0a4.1.min.css" />
+	<script type="text/javascript" src="jquery.mobile-1.0a4.1/jquery-1.5.2.min.js"></script>
+	<script type="text/javascript" src="jquery.mobile-1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
+</head> 
+<body> 
+
+<div data-role="page" id="canvasPage">
+
+	<div data-role="header">
+		<h1>Canvas</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	    
+    <canvas id="canvas" width="290" height="300">
+        Canvas element not supported!
+    </canvas>
+    <button id="clear">Clear canvas</button>
+	</div><!-- /content -->
+	
+	<!-- Page Scripts -->
+	
+	<script type="text/javascript">
+	$("#canvasPage").bind("pageshow",function(){
+	  
+	  console.log("canvas page show");
+	  
+	  var canvas = $("#canvas")[0];
+	  
+	  if (canvas.getContext){
+	    var ctx = canvas.getContext('2d');
+	    var size = 50;
+	    
+	    initializeCanvas(ctx,size);
+	  
+  	  $("#canvas").bind('touchmove mousemove',function(e){
+  	    // Prevent page from scrolling
+  	    e.preventDefault();
+	    
+  	    // If touch event, we need to get x and y from touches array
+  	    if(!e.pageX){
+  	      var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
+  	      e.pageX = touch.pageX;
+  	      e.pageY = touch.pageY;
+  	    }
+	    
+  	    // Calculate relative position to canvas
+        var x = e.pageX - this.offsetLeft;
+        var y = e.pageY - this.offsetTop;
+      
+        // Draw to canvas
+        ctx.save();
+        ctx.translate(x,y);
+        ctx.fillRect(-size,-size,size*2,size*2);
+        ctx.restore();
+      });
+      
+      $("#clear").click(function(){
+        initializeCanvas(ctx,size);
+      });
+      
+    } else {
+      alert("Canvas context not supported!");
+    }
+  });
+  
+  function initializeCanvas(ctx,size){
+    // White background
+    ctx.fillStyle = "white";
+    ctx.fillRect(0,0,300,300);
+
+    // Generate "checkboard" background
+    var gridSize = 20;
+    ctx.fillStyle = "#ddd";
+    for (var i=0; i < 300/gridSize; i++) {
+      for (var u=0; u < 300/gridSize; u++) {
+        if ((i+u)%2 == 0){
+          ctx.fillRect(i*gridSize,u*gridSize,gridSize,gridSize);
+        }
+	    };
+    };
+    
+    // Set radial gradient background fill
+    var radgrad = ctx.createRadialGradient(0,0,0,0,0,size);
+    radgrad.addColorStop(0, 'rgba(0,153,255,1)');
+    radgrad.addColorStop(1, 'rgba(255,255,255,0.0)');
+    ctx.fillStyle = radgrad;
+  }
+  
+  $("#canvasPage").bind("pagehide",function(){
+    console.log("canvas page hide");
+    $("#canvas").unbind();
+  });
+  </script>
+
+</div><!-- /page -->
+
+</body>
+</html>
