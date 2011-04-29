@@ -1,0 +1,23 @@
+CACHE MANIFEST
+# rev 3
+
+accelerometer.html
+canvas.html
+dialog.html
+emptypage.html
+geolocation.html
+icon.png
+index.html
+jquery.mobile-1.0a4.1/images/ajax-loader.png
+jquery.mobile-1.0a4.1/images/icons-18-white.png
+jquery.mobile-1.0a4.1/jquery-1.5.2.min.js
+jquery.mobile-1.0a4.1/jquery.mobile-1.0a4.1.js
+jquery.mobile-1.0a4.1/jquery.mobile-1.0a4.1.min.css
+#jquery.mobile-1.0a4.1/jquery.mobile-1.0a4.1.min.js
+js/main.js
+listview.html
+splash-image-320x460.png
+transitions.html
+
+NETWORK:
+*
