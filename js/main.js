@@ -16,7 +16,12 @@ $(document).ready(function() {
   });
   
   $('#logPage').live('pageshow',function(event, ui){
-    $("#log").listview('refresh');
+    try {
+      $("#log").listview('refresh');
+    } catch(err) {
+      log("Could not refresh listview")
+    }
+    
     // count average time
     var total = 0;
     var amount = 0;
