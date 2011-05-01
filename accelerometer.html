@@ -27,13 +27,11 @@
 	<script type="text/javascript">
 	
 	$("#accelerometer").bind("pageshow",function(){
-	  console.log("accelerometer pageshow");
     if (navigator.accelerometer) {
       watchID = navigator.accelerometer.watchAcceleration(
         accelerometerSuccess, accelerometerError, { frequency: 100 });
 
       $("#accelerometer").bind("pagebeforehide",function(){
-        console.log("accelerometer.clearWatch " + watchID);
         navigator.accelerometer.clearWatch(watchID);
       })
     } else {

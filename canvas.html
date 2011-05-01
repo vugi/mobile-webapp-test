@@ -25,9 +25,7 @@
 	
 	<script type="text/javascript">
 	$("#canvasPage").bind("pageshow",function(){
-	  
-	  console.log("canvas page show");
-	  
+	  	  
 	  var canvas = $("#canvas")[0];
 	  
 	  if (canvas.getContext){
@@ -91,7 +89,6 @@
   }
   
   $("#canvasPage").bind("pagehide",function(){
-    console.log("canvas page hide");
     $("#canvas").unbind();
   });
   </script>
