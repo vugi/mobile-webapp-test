@@ -25,22 +25,28 @@
 	<!-- Page Scripts -->
 	
 	<script type="text/javascript">
+	var watchID;
 	
 	$("#accelerometer").bind("pageshow",function(){
     if (navigator.accelerometer) {
       watchID = navigator.accelerometer.watchAcceleration(
         accelerometerSuccess, accelerometerError, { frequency: 100 });
-
-      $("#accelerometer").bind("pagebeforehide",function(){
-        navigator.accelerometer.clearWatch(watchID);
-      })
     } else {
-      window.addEventListener("devicemotion", function(event) {
-        accelerometerSuccess(event.accelerationIncludingGravity);
-      }, true);
-      accelerometerError('Accelerometer API not supported');
+      accelerometerError('navigator.accelerometer not supported');
+      window.addEventListener("devicemotion",devicemotionHandler,true);
     }
+    $("#accelerometer").bind("pagebeforehide",function(){
+      if (watchID) {
+        navigator.accelerometer.clearWatch(watchID);
+      } else {
+        window.removeEventListener("devicemotion",devicemotionHandler,true);
+      }
+    })
   });
+  
+  function devicemotionHandler(event){
+    accelerometerSuccess(event.accelerationIncludingGravity);
+  }
   
   function accelerometerSuccess(acceleration) {
     $("#accelerometerStatus").html('X: ' + acceleration.x + '<br />' +
