@@ -43,12 +43,11 @@ function stop(){
 }
 
 function log(message,time){
-  if(time){
-    message += "<span class='ui-li-count'><b>"+time+"</b> ms</span>";
-  }
-  $("#log").append("<li>"+message+"</li>"); 
-  
   if (console && console.log){
     console.log(message + ": " + time);
   }
+  if(time){
+    message += "<span class='ui-li-count'><b>"+time+"</b> ms</span>";
+  }
+  $("#log").append("<li>"+message+"</li>");
 }

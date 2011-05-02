@@ -35,6 +35,9 @@
         navigator.accelerometer.clearWatch(watchID);
       })
     } else {
+      window.addEventListener("devicemotion", function(event) {
+        accelerometerSuccess(event.accelerationIncludingGravity);
+      }, true);
       accelerometerError('Accelerometer API not supported');
     }
   });
